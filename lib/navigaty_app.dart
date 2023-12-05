@@ -15,7 +15,7 @@ class NavigatyApp extends StatelessWidget {
     height = MediaQuery.sizeOf(context).height;
 
     return ScreenUtilInit(
-      designSize: const Size(375, 812),
+      designSize: const Size(428, 926),
       minTextAdapt: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

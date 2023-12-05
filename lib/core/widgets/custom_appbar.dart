@@ -30,15 +30,17 @@ class CustomAppBar extends StatelessWidget {
                     Icons.arrow_back_ios_new,
                     color: Colors.black,
                   )))
-          : SizedBox.shrink(),
+          : const SizedBox.shrink(),
       Positioned(
-        top: 56,
+        top: isBackButtonExists ? 62 : 56,
         right: 21,
         child: Align(
           alignment: Alignment.topCenter,
           child: Text(
             title,
-            style: Styles.style25WhiteBoldCairo,
+            style: isBackButtonExists
+                ? Styles.style18WhiteBoldCairo
+                : Styles.style25WhiteBoldCairo,
           ),
         ),
       ),
