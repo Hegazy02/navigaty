@@ -8,4 +8,8 @@ class Styles {
       fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold);
   static TextStyle style18WhiteBoldCairo = GoogleFonts.cairo(
       fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold);
+  static TextStyle style16WhiteBoldCairo = GoogleFonts.cairo(
+      fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold);
+  static TextStyle style20WBlackBoldCairo = GoogleFonts.cairo(
+      fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold);
 }
