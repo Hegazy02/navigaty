@@ -42,7 +42,7 @@ class _CustonDropDownMenuState extends State<CustonDropDownMenu> {
   }
 
   List<DropdownMenuEntry> getEntries() {
-    List<String> data = ['دابة', 'شانشولا', 'سنار', 'شراعي'];
+    List<String> data = ['دبة', 'شانشولا', 'سنار', 'شراعي'];
     return data
         .map((e) => DropdownMenuEntry(
             value: e,
