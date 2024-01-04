@@ -10,6 +10,7 @@ import 'package:navigaty/features/soroh_boats/presentation/views/daily_soroh_vie
 import 'package:navigaty/features/soroh_boats/presentation/views/monthly_soroh_view.dart';
 import 'package:navigaty/features/soroh_boats/presentation/views/soroh_boats_view.dart';
 import 'package:navigaty/features/soroh_boats/presentation/views/yearly_soroh_view.dart';
+import 'package:navigaty/features/web_app/web_app_view.dart';
 
 class AppRouter {
   static Route generateRoute(RouteSettings settings) {
@@ -47,7 +48,8 @@ class AppRouter {
             builder: (_) => YearlySorohView(
                   title: settings.arguments as String,
                 ));
-
+      case Routes.webApp:
+        return MaterialPageRoute(builder: (_) => const WebViewApp());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

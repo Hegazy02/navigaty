@@ -7,7 +7,7 @@ class EnzalatView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: EnzalatBody(),
+      body: EnzalatBody(title: 'الأنزالات',),
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:navigaty/core/widgets/custom_appbar.dart';
 import 'package:navigaty/features/soroh_boats/presentation/views/widgets/CustomTextField.dart';
 import 'package:navigaty/features/soroh_boats/presentation/views/widgets/custom_drop_down_menu.dart';
 import 'package:navigaty/features/soroh_boats/presentation/views/widgets/detailes_card.dart';
+import 'package:navigaty/main.dart';
 
 class CurrentSorohViewBody extends StatefulWidget {
   final String title;
@@ -74,7 +75,7 @@ class _CurrentSorohViewBodyState extends State<CurrentSorohViewBody> {
                     liecensId: "${filteredData[index][0]?.value}",
                     boatId: "${filteredData[index][1]?.value}",
                     boatName: "${filteredData[index][2]?.value}",
-                    boatOwnerName: "${filteredData[index][3]?.value}",
+                    boatOwnerName: "${getRandomBoatOwnersName()}",
                     strength: "${filteredData[index][4]?.value}",
                     craft: "${filteredData[index][5]?.value}",
                   )),

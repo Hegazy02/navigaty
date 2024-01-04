@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:navigaty/core/helpers/extentions.dart';
+import 'package:navigaty/core/routing/routes.dart';
 import 'package:navigaty/core/theme/colors.dart';
 import 'package:navigaty/core/theme/styles.dart';
+import 'package:navigaty/core/widgets/custom_button.dart';
+import 'package:navigaty/main.dart';
 
 class DetailsCard extends StatelessWidget {
   final String? boatName;
@@ -28,112 +32,134 @@ class DetailsCard extends StatelessWidget {
       decoration: BoxDecoration(
           color: MyColors.primaryColor,
           borderRadius: BorderRadius.circular(10)),
-      child: Column(
+      child: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  "$boatName",
-                  style: Styles.style13BlackBoldCairo,
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      "$boatName",
+                      style: Styles.style13BlackBoldCairo,
+                    ),
+                    SizedBox(
+                      width: 20.w,
+                    ),
+                    Text(
+                      "اسم المركب",
+                      style: Styles.style13WhiteBoldCairo,
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  width: 20.w,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      "$boatOwnerName",
+                      style: Styles.style13BlackBoldCairo,
+                    ),
+                    SizedBox(
+                      width: 20.w,
+                    ),
+                    Text(
+                      "اسم صاحب المركب",
+                      style: Styles.style13WhiteBoldCairo,
+                    ),
+                  ],
                 ),
-                Text(
-                  "اسم المركب",
-                  style: Styles.style13WhiteBoldCairo,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      "$strength",
+                      style: Styles.style13BlackBoldCairo,
+                    ),
+                    SizedBox(
+                      width: 20.w,
+                    ),
+                    Text(
+                      "القوة",
+                      style: Styles.style13WhiteBoldCairo,
+                    ),
+                    SizedBox(
+                      width: 20.w,
+                    ),
+                    Text(
+                      "$craft",
+                      style: Styles.style13BlackBoldCairo,
+                    ),
+                    SizedBox(
+                      width: 20.w,
+                    ),
+                    Text(
+                      "الحرفة",
+                      style: Styles.style13WhiteBoldCairo,
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      "$liecensId",
+                      style: Styles.style13BlackBoldCairo,
+                    ),
+                    SizedBox(
+                      width: 20.w,
+                    ),
+                    Text(
+                      "رقم الرخصة",
+                      style: Styles.style13WhiteBoldCairo,
+                    ),
+                    SizedBox(
+                      width: 20.w,
+                    ),
+                    Text(
+                      "$boatId",
+                      style: Styles.style13BlackBoldCairo,
+                    ),
+                    SizedBox(
+                      width: 20.w,
+                    ),
+                    Text(
+                      "رقم المركب",
+                      style: Styles.style13WhiteBoldCairo,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 60.h,
+                child: CustomButton(
+                  text: "تتبع",
+                  onPressed: () {
+                    context.pushNamed(Routes.webApp);
+                  },
+                ),
+              ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  "$boatOwnerName",
-                  style: Styles.style13BlackBoldCairo,
-                ),
-                SizedBox(
-                  width: 20.w,
-                ),
-                Text(
-                  "اسم صاحب المركب",
-                  style: Styles.style13WhiteBoldCairo,
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  "$strength",
-                  style: Styles.style13BlackBoldCairo,
-                ),
-                SizedBox(
-                  width: 20.w,
-                ),
-                Text(
-                  "القوة",
-                  style: Styles.style13WhiteBoldCairo,
-                ),
-                SizedBox(
-                  width: 20.w,
-                ),
-                Text(
-                  "$craft",
-                  style: Styles.style13BlackBoldCairo,
-                ),
-                SizedBox(
-                  width: 20.w,
-                ),
-                Text(
-                  "الحرفة",
-                  style: Styles.style13WhiteBoldCairo,
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  "$liecensId",
-                  style: Styles.style13BlackBoldCairo,
-                ),
-                SizedBox(
-                  width: 20.w,
-                ),
-                Text(
-                  "رقم الرخصة",
-                  style: Styles.style13WhiteBoldCairo,
-                ),
-                SizedBox(
-                  width: 20.w,
-                ),
-                Text(
-                  "$boatId",
-                  style: Styles.style13BlackBoldCairo,
-                ),
-                SizedBox(
-                  width: 20.w,
-                ),
-                Text(
-                  "رقم المركب",
-                  style: Styles.style13WhiteBoldCairo,
-                ),
-              ],
-            ),
-          ),
+          Container(
+            height: 100.h,
+            width: 100.h,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                image: DecorationImage(
+                    image: AssetImage(getRandomBoatImages()),
+                    fit: BoxFit.fill)),
+          )
         ],
       ),
     );

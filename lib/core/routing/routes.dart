@@ -9,4 +9,5 @@ class Routes {
   static const String dailySoroh = "/dailySoroh";
   static const String monthlySoroh = "/monthlySoroh";
   static const String yearlySoroh = "/yearlySoroh";
+  static const String webApp = "/webApp";
 }

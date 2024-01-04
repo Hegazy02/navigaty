@@ -7,7 +7,7 @@ class BoatsOutsideGovernView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: BoatsOutsideGovernViewBody(),
+      body: BoatsOutsideGovernViewBody(title: "مراكب من خارج المحافظة"),
     );
   }
 }
