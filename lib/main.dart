@@ -1,12 +1,14 @@
+import 'dart:ffi';
 import 'dart:math';
 
+import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:navigaty/core/services/excel_files.dart';
 import 'package:navigaty/navigaty_app.dart';
 
 void main() {
-    WidgetsFlutterBinding.ensureInitialized();
-  
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const NavigatyApp());
   ExcelFiles().readData(indexSheetNumber: 0);
 }
@@ -54,4 +56,12 @@ getRandomBoatOwnersName() {
 getRandomBoatImages() {
   Random ran = Random();
   return boatsImages[ran.nextInt(boatsImages.length)];
+}
+
+List<List<Data?>> filteredData = ExcelFiles.rows;
+
+getRandomDataByIndex(int rowNumber) {
+  Random ran = Random();
+
+  return filteredData[ran.nextInt(filteredData.length)][rowNumber]?.value;
 }

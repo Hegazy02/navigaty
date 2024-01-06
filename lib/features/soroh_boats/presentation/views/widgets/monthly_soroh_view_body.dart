@@ -36,6 +36,23 @@ class _MonthlySorohViewBodyState extends State<MonthlySorohViewBody> {
     });
   }
 
+  String? liecensId;
+  String? boatId;
+  String? boatName;
+  String? boatOwnerName;
+  String? strength;
+  String? craft;
+  @override
+  void initState() {
+    liecensId = "${getRandomDataByIndex(0)}";
+    boatId = "${getRandomDataByIndex(1)}";
+    boatName = "${getRandomDataByIndex(2)}";
+    boatOwnerName = "${getRandomBoatOwnersName()}";
+    strength = "${getRandomDataByIndex(4)}";
+    craft = "${getRandomDataByIndex(5)}";
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -72,12 +89,12 @@ class _MonthlySorohViewBodyState extends State<MonthlySorohViewBody> {
               padding: const EdgeInsets.all(0),
               itemCount: filteredData.length,
               itemBuilder: (context, index) => DetailsCard(
-                    liecensId: "${filteredData[index][0]?.value}",
-                    boatId: "${filteredData[index][1]?.value}",
-                    boatName: "${filteredData[index][2]?.value}",
-                    boatOwnerName: "${getRandomBoatOwnersName()}",
-                    strength: "${filteredData[index][4]?.value}",
-                    craft: "${filteredData[index][5]?.value}",
+                    liecensId: liecensId,
+                    boatId: boatId,
+                    boatName: boatName,
+                    boatOwnerName: boatOwnerName,
+                    strength: strength,
+                    craft: craft,
                   )),
         )
       ],

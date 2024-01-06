@@ -13,13 +13,14 @@ class BoatsOutsideGovernViewBody extends StatefulWidget {
   const BoatsOutsideGovernViewBody({super.key, required this.title});
 
   @override
-  State<BoatsOutsideGovernViewBody> createState() => _BoatsOutsideGovernViewBodyState();
+  State<BoatsOutsideGovernViewBody> createState() =>
+      _BoatsOutsideGovernViewBodyState();
 }
 
-class _BoatsOutsideGovernViewBodyState extends State<BoatsOutsideGovernViewBody> {
+class _BoatsOutsideGovernViewBodyState
+    extends State<BoatsOutsideGovernViewBody> {
   String searchText = '';
   String filter = '';
-  List<List<Data?>> filteredData = ExcelFiles.rows;
   filterCraftsData({required String value}) {
     setState(() {
       filteredData = ExcelFiles.rows
@@ -34,6 +35,23 @@ class _BoatsOutsideGovernViewBodyState extends State<BoatsOutsideGovernViewBody>
           .where((e) => e[2]!.value.toString().startsWith(value))
           .toList();
     });
+  }
+
+  String? liecensId;
+  String? boatId;
+  String? boatName;
+  String? boatOwnerName;
+  String? strength;
+  String? craft;
+  @override
+  void initState() {
+    liecensId = "${getRandomDataByIndex(0)}";
+    boatId = "${getRandomDataByIndex(1)}";
+    boatName = "${getRandomDataByIndex(2)}";
+    boatOwnerName = "${getRandomBoatOwnersName()}";
+    strength = "${getRandomDataByIndex(4)}";
+    craft = "${getRandomDataByIndex(5)}";
+    super.initState();
   }
 
   @override
@@ -72,12 +90,12 @@ class _BoatsOutsideGovernViewBodyState extends State<BoatsOutsideGovernViewBody>
               padding: const EdgeInsets.all(0),
               itemCount: filteredData.length,
               itemBuilder: (context, index) => DetailsCard(
-                    liecensId: "${filteredData[index][0]?.value}",
-                    boatId: "${filteredData[index][1]?.value}",
-                    boatName: "${filteredData[index][2]?.value}",
-                    boatOwnerName: "${getRandomBoatOwnersName()}",
-                    strength: "${filteredData[index][4]?.value}",
-                    craft: "${filteredData[index][5]?.value}",
+                    liecensId: liecensId,
+                    boatId: boatId,
+                    boatName: boatName,
+                    boatOwnerName: boatOwnerName,
+                    strength: strength,
+                    craft: craft,
                   )),
         )
       ],
