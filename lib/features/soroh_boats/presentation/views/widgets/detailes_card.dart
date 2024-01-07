@@ -14,6 +14,7 @@ class DetailsCard extends StatelessWidget {
   final String? craft;
   final String? liecensId;
   final String? boatId;
+  final String image;
   const DetailsCard(
       {super.key,
       this.boatName,
@@ -21,7 +22,8 @@ class DetailsCard extends StatelessWidget {
       this.strength,
       this.craft,
       this.liecensId,
-      this.boatId});
+      this.boatId,
+      required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -157,8 +159,7 @@ class DetailsCard extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
                 image: DecorationImage(
-                    image: AssetImage(getRandomBoatImages()),
-                    fit: BoxFit.fill)),
+                    image: AssetImage(image), fit: BoxFit.fill)),
           )
         ],
       ),

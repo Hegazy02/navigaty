@@ -36,20 +36,23 @@ class _EnzalatBodyState extends State<EnzalatBody> {
     });
   }
 
-  String? liecensId;
-  String? boatId;
-  String? boatName;
-  String? boatOwnerName;
-  String? strength;
-  String? craft;
+  List liecensId = [];
+  List boatId = [];
+  List boatName = [];
+  List boatOwnerName = [];
+  List strength = [];
+  List craft = [];
+  List image = [];
   @override
   void initState() {
-    liecensId = "${getRandomDataByIndex(0)}";
-    boatId = "${getRandomDataByIndex(1)}";
-    boatName = "${getRandomDataByIndex(2)}";
-    boatOwnerName = "${getRandomBoatOwnersName()}";
-    strength = "${getRandomDataByIndex(4)}";
-    craft = "${getRandomDataByIndex(5)}";
+    print("ddddd");
+    liecensId = getRandomDataByIndex(0);
+    boatId = getRandomDataByIndex(1);
+    boatName = getRandomDataByIndex(2);
+    boatOwnerName = getRandomBoatOwnersName();
+    strength = getRandomDataByIndex(4);
+    craft = getRandomDataByIndex(5);
+    image = getRandomBoatImages();
     super.initState();
   }
 
@@ -58,29 +61,29 @@ class _EnzalatBodyState extends State<EnzalatBody> {
     return Column(
       children: [
         CustomAppBar(title: widget.title, isBackButtonExists: true),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            CustonDropDownMenu(
-              onSelected: (value) {
-                setState(() {
-                  filter = value;
-                  filterCraftsData(value: filter);
-                });
-              },
-            ),
-            SizedBox(
-                width: 0.5.sw,
-                child: CustomTextField(
-                  onChanged: (val) {
-                    setState(() {
-                      searchText = val;
-                      filterBoatsNamesData(value: searchText);
-                    });
-                  },
-                )),
-          ],
-        ),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+        //   children: [
+        //     CustonDropDownMenu(
+        //       onSelected: (value) {
+        //         setState(() {
+        //           filter = value;
+        //           filterCraftsData(value: filter);
+        //         });
+        //       },
+        //     ),
+        //     SizedBox(
+        //         width: 0.5.sw,
+        //         child: CustomTextField(
+        //           onChanged: (val) {
+        //             setState(() {
+        //               searchText = val;
+        //               filterBoatsNamesData(value: searchText);
+        //             });
+        //           },
+        //         )),
+        //   ],
+        // ),
         SizedBox(
           height: 20.h,
         ),
@@ -89,12 +92,13 @@ class _EnzalatBodyState extends State<EnzalatBody> {
               padding: const EdgeInsets.all(0),
               itemCount: filteredData.length,
               itemBuilder: (context, index) => DetailsCard(
-                    liecensId: liecensId,
-                    boatId: boatId,
-                    boatName: boatName,
-                    boatOwnerName: boatOwnerName,
-                    strength: strength,
-                    craft: craft,
+                    liecensId: liecensId[index],
+                    boatId: boatId[index],
+                    boatName: boatName[index],
+                    boatOwnerName: boatOwnerName[index],
+                    strength: strength[index],
+                    craft: craft[index],
+                    image: image[index],
                   )),
         )
       ],

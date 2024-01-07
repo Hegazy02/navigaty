@@ -36,20 +36,33 @@ class _CurrentSorohViewBodyState extends State<CurrentSorohViewBody> {
     });
   }
 
-  String? liecensId;
-  String? boatId;
-  String? boatName;
-  String? boatOwnerName;
-  String? strength;
-  String? craft;
+  List liecensId = [];
+  List boatId = [];
+  List boatName = [];
+  List boatOwnerName = [];
+  List strength = [];
+  List craft = [];
+  List image = [];
+  Map data = {};
   @override
   void initState() {
-    liecensId = "${getRandomDataByIndex(0)}";
-    boatId = "${getRandomDataByIndex(1)}";
-    boatName = "${getRandomDataByIndex(2)}";
-    boatOwnerName = "${getRandomBoatOwnersName()}";
-    strength = "${getRandomDataByIndex(4)}";
-    craft = "${getRandomDataByIndex(5)}";
+    print("ddddd");
+    liecensId = getRandomDataByIndex(0);
+    boatId = getRandomDataByIndex(1);
+    boatName = getRandomDataByIndex(2);
+    boatOwnerName = getRandomBoatOwnersName();
+    strength = getRandomDataByIndex(4);
+    craft = getRandomDataByIndex(5);
+    image = getRandomBoatImages();
+    data = {
+      "liecensId": liecensId,
+      "boatId": boatId,
+      "boatName": boatName,
+      "boatOwnerName": boatOwnerName,
+      "strength": strength,
+      "craft": craft,
+      "image": image,
+    };
     super.initState();
   }
 
@@ -61,24 +74,24 @@ class _CurrentSorohViewBodyState extends State<CurrentSorohViewBody> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            CustonDropDownMenu(
-              onSelected: (value) {
-                setState(() {
-                  filter = value;
-                  filterCraftsData(value: filter);
-                });
-              },
-            ),
-            SizedBox(
-                width: 0.5.sw,
-                child: CustomTextField(
-                  onChanged: (val) {
-                    setState(() {
-                      searchText = val;
-                      filterBoatsNamesData(value: searchText);
-                    });
-                  },
-                )),
+            // CustonDropDownMenu(
+            //   onSelected: (value) {
+            //     setState(() {
+            //       filter = value;
+            //       filterCraftsData(value: filter);
+            //     });
+            //   },
+            // ),
+            // SizedBox(
+            //     width: 0.5.sw,
+            //     child: CustomTextField(
+            //       onChanged: (val) {
+            //         setState(() {
+            //           searchText = val;
+            //           filterBoatsNamesData(value: searchText);
+            //         });
+            //       },
+            //     )),
           ],
         ),
         SizedBox(
@@ -89,12 +102,13 @@ class _CurrentSorohViewBodyState extends State<CurrentSorohViewBody> {
               padding: const EdgeInsets.all(0),
               itemCount: filteredData.length,
               itemBuilder: (context, index) => DetailsCard(
-                    liecensId: liecensId,
-                    boatId: boatId,
-                    boatName: boatName,
-                    boatOwnerName: boatOwnerName,
-                    strength: strength,
-                    craft: craft,
+                    liecensId: liecensId[index],
+                    boatId: boatId[index],
+                    boatName: boatName[index],
+                    boatOwnerName: boatOwnerName[index],
+                    strength: strength[index],
+                    craft: craft[index],
+                    image: image[index],
                   )),
         )
       ],

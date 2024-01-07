@@ -49,19 +49,32 @@ List boatsOnwers = [
   'نبيل عبدالعزيز',
 ];
 getRandomBoatOwnersName() {
+  List temp = [];
   Random ran = Random();
-  return boatsOnwers[ran.nextInt(boatsOnwers.length)];
+  for (var i = 0; i < boatsOnwers.length; i++) {
+    temp.add(boatsOnwers[ran.nextInt(boatsOnwers.length)]);
+  }
+  return temp;
 }
 
 getRandomBoatImages() {
+  List temp = [];
   Random ran = Random();
-  return boatsImages[ran.nextInt(boatsImages.length)];
+  for (var i = 0; i < boatsImages.length; i++) {
+    temp.add(boatsImages[ran.nextInt(boatsImages.length)]);
+  }
+  return temp;
 }
 
 List<List<Data?>> filteredData = ExcelFiles.rows;
 
 getRandomDataByIndex(int rowNumber) {
+  List temp = [];
   Random ran = Random();
-
-  return filteredData[ran.nextInt(filteredData.length)][rowNumber]?.value;
+  for (var i = 0; i < filteredData.length; i++) {
+    temp.add(filteredData[ran.nextInt(filteredData.length)][rowNumber]
+        ?.value
+        .toString());
+  }
+  return temp;
 }
