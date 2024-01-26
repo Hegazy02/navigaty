@@ -1,7 +1,5 @@
-import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:navigaty/core/services/excel_files.dart';
 import 'package:navigaty/core/widgets/custom_appbar.dart';
 import 'package:navigaty/features/soroh_boats/presentation/views/widgets/CustomTextField.dart';
 import 'package:navigaty/features/soroh_boats/presentation/views/widgets/custom_drop_down_menu.dart';
@@ -21,39 +19,43 @@ class _BoatsOutsideGovernViewBodyState
     extends State<BoatsOutsideGovernViewBody> {
   String searchText = '';
   String filter = '';
+  List filteredData = [];
   filterCraftsData({required String value}) {
     setState(() {
-      filteredData = ExcelFiles.rows
-          .where((e) => e[5]!.value.toString().startsWith(value))
-          .toList();
+      filteredData =
+          data.where((e) => e["craft"].toString().contains(value)).toList();
     });
   }
 
   filterBoatsNamesData({required String value}) {
     setState(() {
-      filteredData = ExcelFiles.rows
-          .where((e) => e[2]!.value.toString().startsWith(value))
-          .toList();
+      filteredData =
+          data.where((e) => e["boatName"].toString().contains(value)).toList();
+      print("asd $value");
     });
   }
 
-  List liecensId = [];
-  List boatId = [];
-  List boatName = [];
-  List boatOwnerName = [];
-  List strength = [];
-  List craft = [];
-  List image = [];
+  // List liecensId = [];
+  // List boatId = [];
+  // List boatName = [];
+  // List boatOwnerName = [];
+  // List strength = [];
+  // List craft = [];
+  // List image = [];
+  List data = [];
   @override
   void initState() {
-    print("ddddd");
-    liecensId = getRandomDataByIndex(0);
-    boatId = getRandomDataByIndex(1);
-    boatName = getRandomDataByIndex(2);
-    boatOwnerName = getRandomBoatOwnersName();
-    strength = getRandomDataByIndex(4);
-    craft = getRandomDataByIndex(5);
-    image = getRandomBoatImages();
+    data = getData();
+    filteredData = data;
+    // print("ddddd");
+    // liecensId = getRandomDataByIndex(0);
+    // boatId = getRandomDataByIndex(1);
+    // boatName = getRandomDataByIndex(2);
+    // boatOwnerName = getRandomBoatOwnersName();
+    // strength = getRandomDataByIndex(4);
+    // craft = getRandomDataByIndex(5);
+    // image = getRandomBoatImages();
+
     super.initState();
   }
 
@@ -62,29 +64,29 @@ class _BoatsOutsideGovernViewBodyState
     return Column(
       children: [
         CustomAppBar(title: widget.title, isBackButtonExists: true),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-        //   children: [
-        //     CustonDropDownMenu(
-        //       onSelected: (value) {
-        //         setState(() {
-        //           filter = value;
-        //           filterCraftsData(value: filter);
-        //         });
-        //       },
-        //     ),
-        //     SizedBox(
-        //         width: 0.5.sw,
-        //         child: CustomTextField(
-        //           onChanged: (val) {
-        //             setState(() {
-        //               searchText = val;
-        //               filterBoatsNamesData(value: searchText);
-        //             });
-        //           },
-        //         )),
-        //   ],
-        // ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            CustonDropDownMenu(
+              onSelected: (value) {
+                setState(() {
+                  filter = value;
+                  filterCraftsData(value: filter);
+                });
+              },
+            ),
+            SizedBox(
+                width: 0.5.sw,
+                child: CustomTextField(
+                  onChanged: (val) {
+                    setState(() {
+                      searchText = val;
+                      filterBoatsNamesData(value: searchText);
+                    });
+                  },
+                )),
+          ],
+        ),
         SizedBox(
           height: 20.h,
         ),
@@ -93,13 +95,13 @@ class _BoatsOutsideGovernViewBodyState
               padding: const EdgeInsets.all(0),
               itemCount: filteredData.length,
               itemBuilder: (context, index) => DetailsCard(
-                    liecensId: liecensId[index],
-                    boatId: boatId[index],
-                    boatName: boatName[index],
-                    boatOwnerName: boatOwnerName[index],
-                    strength: strength[index],
-                    craft: craft[index],
-                    image: image[index],
+                    liecensId: filteredData[index]['liecensId'],
+                    boatId: filteredData[index]['boatId'],
+                    boatName: filteredData[index]['boatName'],
+                    boatOwnerName: filteredData[index]['boatOwnerName'],
+                    strength: filteredData[index]['strength'],
+                    craft: filteredData[index]['craft'],
+                    image: filteredData[index]['image'],
                   )),
         )
       ],

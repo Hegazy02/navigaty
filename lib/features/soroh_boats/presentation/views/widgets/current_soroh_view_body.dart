@@ -19,50 +19,43 @@ class CurrentSorohViewBody extends StatefulWidget {
 class _CurrentSorohViewBodyState extends State<CurrentSorohViewBody> {
   String searchText = '';
   String filter = '';
-  List<List<Data?>> filteredData = ExcelFiles.rows;
+  List filteredData = [];
   filterCraftsData({required String value}) {
     setState(() {
-      filteredData = ExcelFiles.rows
-          .where((e) => e[5]!.value.toString().startsWith(value))
-          .toList();
+      filteredData =
+          data.where((e) => e["craft"].toString().contains(value)).toList();
     });
   }
 
   filterBoatsNamesData({required String value}) {
     setState(() {
-      filteredData = ExcelFiles.rows
-          .where((e) => e[2]!.value.toString().startsWith(value))
-          .toList();
+      filteredData =
+          data.where((e) => e["boatName"].toString().contains(value)).toList();
+      print("asd $value");
     });
   }
 
-  List liecensId = [];
-  List boatId = [];
-  List boatName = [];
-  List boatOwnerName = [];
-  List strength = [];
-  List craft = [];
-  List image = [];
-  Map data = {};
+  // List liecensId = [];
+  // List boatId = [];
+  // List boatName = [];
+  // List boatOwnerName = [];
+  // List strength = [];
+  // List craft = [];
+  // List image = [];
+  List data = [];
   @override
   void initState() {
-    print("ddddd");
-    liecensId = getRandomDataByIndex(0);
-    boatId = getRandomDataByIndex(1);
-    boatName = getRandomDataByIndex(2);
-    boatOwnerName = getRandomBoatOwnersName();
-    strength = getRandomDataByIndex(4);
-    craft = getRandomDataByIndex(5);
-    image = getRandomBoatImages();
-    data = {
-      "liecensId": liecensId,
-      "boatId": boatId,
-      "boatName": boatName,
-      "boatOwnerName": boatOwnerName,
-      "strength": strength,
-      "craft": craft,
-      "image": image,
-    };
+    data = getData();
+    filteredData = data;
+    // print("ddddd");
+    // liecensId = getRandomDataByIndex(0);
+    // boatId = getRandomDataByIndex(1);
+    // boatName = getRandomDataByIndex(2);
+    // boatOwnerName = getRandomBoatOwnersName();
+    // strength = getRandomDataByIndex(4);
+    // craft = getRandomDataByIndex(5);
+    // image = getRandomBoatImages();
+
     super.initState();
   }
 
@@ -74,24 +67,24 @@ class _CurrentSorohViewBodyState extends State<CurrentSorohViewBody> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            // CustonDropDownMenu(
-            //   onSelected: (value) {
-            //     setState(() {
-            //       filter = value;
-            //       filterCraftsData(value: filter);
-            //     });
-            //   },
-            // ),
-            // SizedBox(
-            //     width: 0.5.sw,
-            //     child: CustomTextField(
-            //       onChanged: (val) {
-            //         setState(() {
-            //           searchText = val;
-            //           filterBoatsNamesData(value: searchText);
-            //         });
-            //       },
-            //     )),
+            CustonDropDownMenu(
+              onSelected: (value) {
+                setState(() {
+                  filter = value;
+                  filterCraftsData(value: filter);
+                });
+              },
+            ),
+            SizedBox(
+                width: 0.5.sw,
+                child: CustomTextField(
+                  onChanged: (val) {
+                    setState(() {
+                      searchText = val;
+                      filterBoatsNamesData(value: searchText);
+                    });
+                  },
+                )),
           ],
         ),
         SizedBox(
@@ -102,13 +95,13 @@ class _CurrentSorohViewBodyState extends State<CurrentSorohViewBody> {
               padding: const EdgeInsets.all(0),
               itemCount: filteredData.length,
               itemBuilder: (context, index) => DetailsCard(
-                    liecensId: liecensId[index],
-                    boatId: boatId[index],
-                    boatName: boatName[index],
-                    boatOwnerName: boatOwnerName[index],
-                    strength: strength[index],
-                    craft: craft[index],
-                    image: image[index],
+                    liecensId: filteredData[index]['liecensId'],
+                    boatId: filteredData[index]['boatId'],
+                    boatName: filteredData[index]['boatName'],
+                    boatOwnerName: filteredData[index]['boatOwnerName'],
+                    strength: filteredData[index]['strength'],
+                    craft: filteredData[index]['craft'],
+                    image: filteredData[index]['image'],
                   )),
         )
       ],
